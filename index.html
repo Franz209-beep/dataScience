@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Franz Weihs – My Story</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0b0c;          /* Schwarz */
+      --card: #161618;
+      --card-2: #1e1e21;
+      --text: #f2f0eb;
+      --muted: #a3a3a8;
+      --accent: #e3324a;      /* HWR-Rot, aufgehellt für dunklen Hintergrund */
+      --bayer: #3fa2dc;       /* Bayer-Blau, aufgehellt */
+      --line: #2a2a2e;
+      --chip-border: #f3c94f; /* Bumble-Gelb */
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Inter", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+    }
+    .wrap { max-width: 960px; margin: 0 auto; padding: 0 20px; }
+    h1, h2, h3 { font-family: "Fraunces", Georgia, serif; line-height: 1.2; }
+    h2 { font-size: 2rem; margin: 0 0 1rem; }
+    h2::after {
+      content: ""; display: block; width: 48px; height: 4px;
+      background: var(--accent); margin-top: .5rem; border-radius: 2px;
+    }
+    section { padding: 48px 0; }
+    a { color: var(--accent); }
+    .muted { color: var(--muted); }
+
+    /* ---------- 1 · Hero ---------- */
+    .hero { padding: 72px 0 32px; }
+    .hero .wrap { display: flex; gap: 40px; align-items: center; flex-wrap: wrap; }
+    .hero .wrap > div { flex: 1; min-width: 260px; }
+    .hero img {
+      width: 210px; height: 210px; object-fit: cover; border-radius: 50%;
+      border: 4px solid var(--card-2); box-shadow: 0 0 0 2px var(--accent), 0 14px 40px rgba(0,0,0,.6);
+    }
+    .hero h1 { font-size: clamp(2.4rem, 6vw, 3.6rem); margin: 0 0 1rem; }
+    .roles { list-style: none; padding: 0; margin: 0 0 1.2rem; display: grid; gap: 8px; }
+    .roles li { display: flex; align-items: center; gap: 10px; font-size: 1.05rem; }
+    .tag {
+      font-size: .72rem; font-weight: 600; color: #0b0b0c; padding: 2px 10px;
+      border-radius: 999px; min-width: 62px; text-align: center;
+    }
+    .tag.work { background: var(--bayer); }
+    .tag.uni  { background: var(--accent); color: #fff; }
+    .links { display: flex; gap: 10px; flex-wrap: wrap; }
+    .links a {
+      text-decoration: none; padding: 6px 14px; border: 1.5px solid var(--accent);
+      border-radius: 999px; font-weight: 600; font-size: .9rem;
+    }
+    .links a:hover { background: var(--accent); color: #fff; }
+
+    /* ---------- 2 · Born & Raised ---------- */
+    .story { max-width: 720px; color: #d9d7d2; }
+    .pics { display: grid; gap: 14px; grid-template-columns: 1fr 1fr; margin-top: 1.2rem; }
+    @media (max-width: 640px) { .pics { grid-template-columns: 1fr; } }
+    figure { margin: 0; }
+    figure img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; border-radius: 14px; }
+    figcaption { font-size: .85rem; color: var(--muted); padding-top: 6px; }
+
+    /* ---------- 3 · Interests (Bumble-Style) ---------- */
+    .interests-card { background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 26px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 12px; margin: 0; padding: 0; list-style: none; }
+    .chips li {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 20px; border-radius: 999px; font-weight: 500; font-size: 1rem;
+      background: var(--card-2); border: 1.5px solid var(--chip-border); color: var(--text);
+    }
+
+    /* ---------- 4 · Tabellen ---------- */
+    .table-title { display: flex; align-items: center; gap: 10px; margin: 2.2rem 0 .8rem; font-size: 1.35rem; }
+    .table-wrap { overflow-x: auto; border-radius: 14px; border: 1px solid var(--line); }
+    table { width: 100%; border-collapse: collapse; background: var(--card); min-width: 600px; }
+    th, td { text-align: left; padding: 14px 18px; vertical-align: top; }
+    thead th {
+      font-size: .76rem; text-transform: uppercase; letter-spacing: .06em;
+      color: var(--muted); background: var(--card-2); font-weight: 600;
+    }
+    tbody tr + tr td { border-top: 1px solid var(--line); }
+    tbody tr:hover td { background: #1b1b1e; }
+    td.when { white-space: nowrap; font-weight: 600; width: 170px; }
+    td .what { font-weight: 600; display: block; }
+    td .detail { color: var(--muted); font-size: .92rem; }
+    .uni-table  td:first-child { border-left: 4px solid var(--accent); }
+    .work-table td:first-child { border-left: 4px solid var(--bayer); }
+    .work-table tr.current td .what::after {
+      content: "current"; margin-left: 8px; font-size: .7rem; font-weight: 600; color: #0b0b0c;
+      background: var(--bayer); padding: 1px 8px; border-radius: 999px; vertical-align: middle;
+    }
+
+    .map {
+      width: 100%; height: 440px; border: 1px solid var(--line); border-radius: 14px; margin-top: 1rem;
+      background: var(--card);
+    }
+
+    footer { padding: 32px 0 48px; color: var(--muted); font-size: .9rem; text-align: center;
+             border-top: 1px solid var(--line); margin-top: 24px; }
+  </style>
+</head>
+<body>
+
+  <!-- ===================== 1 · NAME & AKTUELL ===================== -->
+  <header class="hero">
+    <div class="wrap">
+      <img src="images/me.jpg" alt="Portrait of Franz Weihs">
+      <div>
+        <h1>Franz Weihs</h1>
+        <ul class="roles">
+          <li><span class="tag work">Work</span> Junior HR Data Quality Consultant · Bayer AG</li>
+          <li><span class="tag uni">Study</span> Master's student BIPM · HWR Berlin</li>
+        </ul>
+        <div class="links">
+          <!-- TODO: Links anpassen oder Zeile löschen -->
+          <a href="https://www.linkedin.com/in/franz-weihs-51738b364?utm_source=share_via&utm_content=profile&utm_medium=member_android">LinkedIn</a>
+          <a href="https://github.com/Franz209-beep">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== 2 · BORN & RAISED ===================== -->
+  <section>
+    <div class="wrap">
+      <h2>Born &amp; raised</h2>
+      <p class="story">
+        I grew up in <strong>Rathenow</strong>, a small town on the Havel river in Brandenburg,
+        about an hour west of Berlin – known as the "city of optics" and surrounded by
+        lakes, forests and the wide Havelland landscape.
+      </p>
+      <div class="pics">
+        <figure>
+          <img src="images/rathenow1.jpg" alt="Rathenow">
+        </figure>
+        <figure>
+          <img src="images/rathenow2.jpg" alt="Rathenow">
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 3 · INTERESTS ===================== -->
+  <section>
+    <div class="wrap">
+      <h2>Interests</h2>
+      <div class="interests-card">
+        <ul class="chips">
+          <li>🏋️ Sports</li>
+          <li>🎱 Billiards</li>
+          <li>😴 Sleeping</li>
+          <li>🪴 Plants</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 4 · WERDEGANG ===================== -->
+  <section>
+    <div class="wrap">
+      <h2>My path to HWR</h2>
+      <p class="story">
+        After school I chose a dual study programme in Business Informatics at
+        HWR Berlin, with Bayer as my practice partner – switching between lectures in Berlin
+        and hands-on phases in different teams at the company. After graduating, Bayer took me
+        on as a Junior HR Data Quality Consultant. Working with HR data every day made me want
+        to go deeper into business intelligence and process management, which is why I started
+        the BIPM Master's programme at HWR alongside my job.
+      </p>
+
+      <!-- ---------- Studium ---------- -->
+      <h3 class="table-title"><span class="tag uni">Study</span> Education</h3>
+      <div class="table-wrap">
+        <table class="uni-table">
+          <thead><tr><th>Period</th><th>Programme</th><th>Where</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="when">2023 – 2026</td>
+              <td><span class="what">Dual Bachelor's degree (B.Sc.) in Business Informatics</span>
+                  <span class="detail">Theory phases at university, practice phases at Bayer</span></td>
+              <td>HWR Berlin<br><span class="detail">Practice partner: Bayer AG</span></td>
+            </tr>
+            <tr>
+              <td class="when">2026 – today</td>
+              <td><span class="what">Master's in Business Intelligence &amp; Process Management</span>
+                  <span class="detail">Studying alongside my job at Bayer</span></td>
+              <td>HWR Berlin</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ---------- Arbeit: 7 Stationen ---------- -->
+      <!-- Optional: bei "Practice phase X" genaue Zeiträume (z. B. 10/2023 – 12/2023)
+           und bei "detail" eine kurze Beschreibung eintragen. -->
+      <h3 class="table-title"><span class="tag work">Work</span> Work experience</h3>
+      <div class="table-wrap">
+        <table class="work-table">
+          <thead><tr><th>Period</th><th>Role / Team</th><th>Where</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="when">Practice phase 1</td>
+              <td><span class="what">CoE Diagnostic Imaging Data &amp; AI</span>
+                  <span class="detail">Dual studies · practice phase at Bayer</span></td>
+              <td>Bayer AG</td>
+            </tr>
+            <tr>
+              <td class="when">Practice phase 2</td>
+              <td><span class="what">Platforms &amp; Capabilities</span>
+                  <span class="detail">Dual studies · practice phase at Bayer</span></td>
+              <td>Bayer AG</td>
+            </tr>
+            <tr>
+              <td class="when">Practice phase 3</td>
+              <td><span class="what">Pharma Finance R&amp;D</span>
+                  <span class="detail">Dual studies · practice phase at Bayer</span></td>
+              <td>Bayer AG</td>
+            </tr>
+            <tr>
+              <td class="when">Practice phase 4</td>
+              <td><span class="what">Global Marketing – Kerendia</span>
+                  <span class="detail">Dual studies · practice phase at Bayer</span></td>
+              <td>Bayer AG</td>
+            </tr>
+            <tr>
+              <td class="when">Practice phase 5</td>
+              <td><span class="what">Project Accounting – Divestments</span>
+                  <span class="detail">Dual studies · practice phase at Bayer</span></td>
+              <td>Bayer AG</td>
+            </tr>
+            <tr>
+              <td class="when">Practice phase 6</td>
+              <td><span class="what">Pharma Finance R&amp;D / Strategic Outsourcing</span>
+                  <span class="detail">Dual studies · practice phase at Bayer</span></td>
+              <td>Bayer AG</td>
+            </tr>
+            <tr class="current">
+              <td class="when">2026 – today</td>
+              <td><span class="what">Junior HR Data Quality Consultant</span>
+                  <span class="detail">Taken on after graduating from the dual programme</span></td>
+              <td>Bayer AG</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 style="margin-top: 44px;">On the map</h3>
+      <!-- Wird von make_map.py erzeugt -->
+      <iframe class="map" src="journey_map.html" title="Map of my path" loading="lazy"></iframe>
+    </div>
+  </section>
+
+  <footer>
+    Built with HTML &amp; Python (folium + pyproj, Esri tiles) · hosted on GitHub Pages
+  </footer>
+
+</body>
+</html>
